@@ -17,5 +17,12 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
+  "ts-node": {
+    "transpileOnly": true,
+    "compiler": "typescript",
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
   "include": ["src", ".plop"]
 }
