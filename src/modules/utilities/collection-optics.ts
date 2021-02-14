@@ -6,11 +6,15 @@ export interface IIdentifiable {
   id: string
 }
 
-function recordToArray<T extends IIdentifiable>(r: Record<T['id'], T>): Array<T> {
+function recordToArray<T extends IIdentifiable>(
+  r: Record<T['id'], T>
+): Array<T> {
   return Object.values(r)
 }
 
-function arrayToRecord<T extends IIdentifiable>(a: Array<T>): Record<T['id'], T> {
+function arrayToRecord<T extends IIdentifiable>(
+  a: Array<T>
+): Record<T['id'], T> {
   return a.reduce((r, v) => ({...r, [v.id]: v}), {} as Record<T['id'], T>)
 }
 

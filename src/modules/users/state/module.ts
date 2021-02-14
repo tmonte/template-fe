@@ -1,5 +1,8 @@
 import {State} from 'modules/state'
-import {recordArrayIso, recordOptional} from 'modules/utilities/collection-optics'
+import {
+  recordArrayIso,
+  recordOptional
+} from 'modules/utilities/collection-optics'
 import {IUsers, IUser} from './interface'
 
 export const initial: IUsers = {}

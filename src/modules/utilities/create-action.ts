@@ -15,12 +15,19 @@ export type ActionFunction0<P> = () => P
 export type ActionFunction1<T1, R> = (t1: T1) => R
 export type ActionFunction2<T1, T2, R> = (t1: T1, t2: T2) => R
 export type ActionFunction3<T1, T2, T3, R> = (t1: T1, t2: T2, t3: T3) => R
-export type ActionFunction4<T1, T2, T3, T4, R> = (t1: T1, t2: T2, t3: T3, t4: T4) => R
+export type ActionFunction4<T1, T2, T3, T4, R> = (
+  t1: T1,
+  t2: T2,
+  t3: T3,
+  t4: T4
+) => R
 export type ActionFunctionAny<R> = (...args: any[]) => R
 
 const identity = <T>(p: T) => p
 
-export function createAction(actionType: string): ActionFunction0<Action<unknown>>
+export function createAction(
+  actionType: string
+): ActionFunction0<Action<unknown>>
 export function createAction<Payload>(
   actionType: string,
   payloadCreator: ActionFunction0<Payload>
@@ -41,7 +48,9 @@ export function createAction<Payload, Arg1, Arg2, Arg3, Arg4>(
   actionType: string,
   payloadCreator: ActionFunction4<Arg1, Arg2, Arg3, Arg4, Payload>
 ): ActionFunction4<Arg1, Arg2, Arg3, Arg4, Action<Payload>>
-export function createAction<Payload>(actionType: string): ActionFunction1<Payload, Action<Payload>>
+export function createAction<Payload>(
+  actionType: string
+): ActionFunction1<Payload, Action<Payload>>
 export function createAction<Meta>(
   actionType: string,
   payloadCreator: undefined,

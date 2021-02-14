@@ -1,5 +1,10 @@
 import createSagaMiddleware, {SagaIterator} from 'redux-saga'
-import {compose, applyMiddleware, createStore as reduxCreateStore, Reducer} from 'redux'
+import {
+  compose,
+  applyMiddleware,
+  createStore as reduxCreateStore,
+  Reducer
+} from 'redux'
 import {OptiqsAction, updateState} from '@optiqs/optiqs'
 
 export const create = <S>(
@@ -11,14 +16,18 @@ export const create = <S>(
 
   const composeEnhancers =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    typeof window === 'object' &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
       : compose
 
   const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware))
 
-  const store = reduxCreateStore<S, OptiqsAction<S>, void, void>(reducer, enhancer)
+  const store = reduxCreateStore<S, OptiqsAction<S>, void, void>(
+    reducer,
+    enhancer
+  )
 
   sagaMiddleware.setContext({dispatch: store.dispatch})
   sagaMiddleware.run(sagas)

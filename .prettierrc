@@ -18,7 +18,7 @@
       "files": ["*.ts"],
       "options": {
         "parser": "typescript",
-        "printWidth": 100
+        "printWidth": 80
       }
     }
   ]
