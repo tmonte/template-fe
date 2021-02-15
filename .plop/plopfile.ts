@@ -1,5 +1,6 @@
 import {NodePlopAPI} from 'plop'
 import {exec} from 'child_process'
+import {generators} from './generators'
 
 export default function (plop: NodePlopAPI) {
   plop.setActionType('lint', function () {
@@ -9,29 +10,7 @@ export default function (plop: NodePlopAPI) {
     })
     return 'Linting...'
   })
-  plop.setGenerator('effect', {
-    description: 'Generates an effect file',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Please enter the effect name'
-      },
-      {
-        type: 'input',
-        name: 'module',
-        message: 'Please enter the module name'
-      }
-    ],
-    actions: [
-      {
-        type: 'add',
-        path: '../src/modules/{{module}}/effect/{{name}}.ts',
-        templateFile: './templates/effect.hbs'
-      },
-      {
-        type: 'lint'
-      }
-    ]
+  generators.forEach(generator => {
+    plop.setGenerator(generator.name, generator.definition)
   })
 }

@@ -1,7 +1,10 @@
+// @importSaga
 import {addSaga} from './add'
 
-export {add} from './add'
-
 export const sagas = {
+  // @exportSaga
   addSaga
 }
+
+// @exportAction
+export {add} from './add'
