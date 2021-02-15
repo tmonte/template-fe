@@ -1,0 +1,15 @@
+import {createAction} from 'modules/utilities'
+import {identity} from 'fp-ts/lib/function'
+import {put, takeLatest} from 'redux-saga/effects'
+import {updateState} from '@optiqs/optiqs'
+
+export const {{camelCase effect}} = createAction('{{constantCase module}}/{{constantCase effect}}')
+export type I{{pascalCase effect}} = typeof {{camelCase effect}}
+
+export const {{camelCase effect}}Saga = takeLatest(
+  {{camelCase effect}}.toString(),
+  function* () {
+    yield put(updateState(identity))
+    throw new Error('Effect {{camelCase effect}} in module {{pascalCase module}} is not implemented.')
+  }
+)

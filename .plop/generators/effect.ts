@@ -1,4 +1,5 @@
 import {PlopGeneratorConfig} from 'node-plop'
+import {updateEffectsActions} from '../actions/update-effects'
 
 export const effect: {name: string; definition: PlopGeneratorConfig} = {
   name: 'effect',
@@ -7,7 +8,7 @@ export const effect: {name: string; definition: PlopGeneratorConfig} = {
     prompts: [
       {
         type: 'input',
-        name: 'name',
+        name: 'effect',
         message: 'Please enter the effect name'
       },
       {
@@ -19,33 +20,23 @@ export const effect: {name: string; definition: PlopGeneratorConfig} = {
     actions: [
       {
         type: 'add',
-        path: '../src/modules/{{module}}/effect/module.ts',
-        templateFile: './templates/effect-module.hbs',
+        path: '../src/modules/{{dashCase module}}/effect/module.ts',
+        templateFile: './templates/module/effect/module.ts.hbs',
         skipIfExists: true
       },
       {
         type: 'add',
-        path: '../src/modules/{{module}}/effect/{{name}}.ts',
-        templateFile: './templates/effect.hbs'
+        path: '../src/modules/{{dashCase module}}/effect/interface.ts',
+        templateFile: './templates/module/effect/interface.ts.hbs',
+        skipIfExists: true
       },
       {
-        type: 'modify',
-        path: '../src/modules/{{module}}/effect/module.ts',
-        pattern: /(\/\/ @importSaga)/gi,
-        template: "$1\r\nimport { {{name}}Saga } from './{{name}}'"
+        type: 'add',
+        path:
+          '../src/modules/{{dashCase module}}/effect/{{dashCase effect}}.ts',
+        templateFile: './templates/module/effect/action.ts.hbs'
       },
-      {
-        type: 'modify',
-        path: '../src/modules/{{module}}/effect/module.ts',
-        pattern: /(\/\/ @exportSaga)/gi,
-        template: '$1\r\n{{name}}Saga,'
-      },
-      {
-        type: 'modify',
-        path: '../src/modules/{{module}}/effect/module.ts',
-        pattern: /(\/\/ @exportAction)/gi,
-        template: "$1\r\nexport { {{name}} } from './{{name}}'"
-      },
+      ...updateEffectsActions,
       {
         type: 'lint'
       }

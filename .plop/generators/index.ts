@@ -1,3 +1,4 @@
 import {effect} from './effect'
+import {module} from './module'
 
-export const generators = [effect]
+export const generators = {effect, module}
