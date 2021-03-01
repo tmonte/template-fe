@@ -1,1 +1,1 @@
-export * as View from './module'
+export * from './Main'

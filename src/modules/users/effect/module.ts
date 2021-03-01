@@ -1,10 +1,10 @@
-// @importSaga
-import {addSaga} from './add'
+import {state} from '../state'
+import {add} from './add'
+import {Module} from './interface'
 
-export const sagas = {
-  // @exportSaga
-  addSaga
+export const effect: Module = {
+  add: {
+    command: add.command,
+    saga: add.saga(state.users)
+  }
 }
-
-// @exportAction
-export {add} from './add'

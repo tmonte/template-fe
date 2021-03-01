@@ -1,2 +1,2 @@
-export * as Effect from './module'
-export * as IEffect from './interface'
+export {effect} from './module'
+export type {Module as Effect} from './interface'

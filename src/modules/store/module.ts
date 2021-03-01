@@ -1,15 +1,14 @@
 import {reducer} from '@optiqs/optiqs'
 import {all} from 'redux-saga/effects'
-import {IState} from 'modules/state'
-import {Users} from 'modules/users'
+import {users} from 'modules/users'
 import {create} from './create'
 
 function* sagas() {
-  yield all([...Object.values(Users.Effect.sagas)])
+  yield all([users.effect.add.saga])
 }
 
-const initialState: IState.IState = {
-  users: Users.State.initial
+const initialState = {
+  users: users.state.initial
 }
 
-export const instance = create(reducer, sagas, initialState)
+export const instance = create(reducer, sagas as any, initialState)

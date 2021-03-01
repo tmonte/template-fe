@@ -1,1 +1,1 @@
-export * as Store from './module'
+export * as store from './module'

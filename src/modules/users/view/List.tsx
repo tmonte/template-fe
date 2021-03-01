@@ -15,9 +15,11 @@ export function List({users}: IProps) {
       <h2>Users</h2>
       <table>
         <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Age</th>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+          </tr>
         </thead>
         <tbody>
           {users.length === 0 && (

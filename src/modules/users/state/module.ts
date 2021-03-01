@@ -1,16 +1,14 @@
-import {State} from 'modules/state'
 import {
   recordArrayIso,
   recordOptional
-} from 'modules/utilities/collection-optics'
-import {IUsers, IUser} from './interface'
+} from 'modules/collection'
+import {Lens} from 'monocle-ts'
+import {User, Module, MainState} from './interface'
 
-export const initial: IUsers = {}
+const access = Lens.fromProp<MainState>()
 
-const usersAccessor = State.get('users')
-
-export const users = usersAccessor.composeIso(recordArrayIso<IUser>())
-
-export function user(id: IUser['id']) {
-  return usersAccessor.composeOptional(recordOptional(id))
+export const state: Module = {
+  initial: {},
+  users: access('users').composeIso(recordArrayIso<User>()),
+  user: (id: User['id']) => access('users').composeOptional(recordOptional(id))
 }

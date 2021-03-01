@@ -1,2 +1,2 @@
-export * as State from './module'
-export * as IState from './interface'
+export {state} from './module'
+export * as State from './interface'
